@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulaire Vue JS</title>
+
+</head>
+<body>
+<pre>
+<h1>Formulaire d'Inscriptions</h1>
+
+    <div id="app">
+        <div v-for="(input,k) in inputs" :key="k">
+            <div>
+                <input type="text" v-model="input.nom" placeholder="Nom">
+                <input type="text" v-model="input.prenom" placeholder="Prénom">
+            </div>
+
+            <span>
+                    <button v-on:click="remove(k)" v-show="k || ( !k && inputs.length > 1)">Supprimer</button>
+                    <button v-on:click="ajout(k)" v-show="k == inputs.length-1">+ Ajouter</button>
+                </span>
+
+
+        </div>
+        <table>
+            <tr v-for="(input,k) in inputs" :key="k">
+                <td>{{input.nom}}</td>
+                <td>{{input.prenom}}</td>
+            </tr>
+        </table>
+    </div>
+</pre>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+
+        data: {
+            inputs: [
+                {
+                    prenom: '',
+                    nom: ''
+                }
+            ]
+        },
+
+        methods: {
+            ajout() {
+                this.inputs.push({
+                    nom: '',
+                    prenom: ''
+                })
+            },
+
+            remove(index) {
+                this.inputs.splice(index, 1)
+            },
+
+            color() {
+                this.inputs
+            }
+        }
+    })
+</script>
+</body>
+</html>
