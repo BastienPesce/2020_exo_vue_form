@@ -14,9 +14,10 @@
 
     <div id="app">
         <div v-for="(input,k) in inputs" :key="k">
-            <div>
+            <div :style="input.color? 'background-color:red;':''">
                 <input type="text" v-model="input.nom" placeholder="Nom">
                 <input type="text" v-model="input.prenom" placeholder="Prénom">
+                <input type="checkbox" v-model="input.color">
             </div>
 
             <span>
@@ -27,7 +28,7 @@
 
         </div>
         <table>
-            <tr v-for="(input,k) in inputs" :key="k">
+            <tr :style="input.color? 'background-color:red;':''" v-for="(input,k) in inputs" :key="k">
                 <td>{{input.nom}}</td>
                 <td>{{input.prenom}}</td>
             </tr>
@@ -43,7 +44,8 @@
             inputs: [
                 {
                     prenom: '',
-                    nom: ''
+                    nom: '',
+                    color:false
                 }
             ]
         },
